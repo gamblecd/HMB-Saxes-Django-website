@@ -1,0 +1,106 @@
+@CHARSET "UTF-8";
+body {background:#220055;color:#EEEEEE;font-family:Tahoma,Geneva,Sans-Serif;}
+p{}
+div {padding:0px;}
+
+.bar {
+    border-top-style:solid;
+    border-bottom-style:solid;
+    border-width: 1px;
+    border-color: gold;
+}
+.content {width:1024px;margin:auto;}
+.decollapse {max-height:20px;clear:both;}
+.design {
+	margin:10px 0 10px 0;
+	padding:15px;
+    border-color:blue;
+    border-style:solid;
+    border-width:1px;
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;
+}
+.item {
+    min-height:150px;
+    margin:0 0 20px 0;
+    
+    border-color:white;
+    border-style:solid;
+    border-width:1px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#header_bar {height:80px;}
+#header {padding:10px;font-style:oblique;font-weight:bold;}
+#image {float:left;border-style:dotted;min-width:200px;}
+#caption {float:right;}
+#nav_bar {height:25px;}
+#nav {padding:0 0 0 0;border-style:none;}
+#nav_list {float:right;margin:2px 0 0 0;list-style: none;}
+#nav li {display:inline;margin:0 10px 0 10px;}
+#nav li:hover {color:gold;padding-bottom:4px;border-bottom-style:solid;border-width:3px;}
+#footer {height:75px;clear:both;}
+#left_col {
+	padding:0px;
+	float:left;
+	width:24%;
+	
+	border-color:red;
+    border-style:solid;
+    border-width:1px;
+}
+
+#right_col {
+	padding:0px;
+	float:right;
+	width:74%;
+	min-height:700px;
+	
+	border-color:red;
+    border-style:solid;
+    border-width:1px;
+}
+
+/* GALLERY DESIGN */
+
+.frame {
+	float:left;
+	margin:0 11px 15px 10px;
+	padding:10px 0 0 0;
+	width:31%;
+	height:200px;
+	
+	
+	border-color:white;
+    border-style:solid;
+    border-width:1px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.photo {
+	/* TODO: set automatic aspect ratio */
+	width:90%;
+	margin:auto;
+	height:80%;
+	
+	border-color:RED;
+    border-style:solid;
+    border-width:1px;
+}
+
+.title {
+	color:gold;
+	width:80%;
+	height:15%;
+	margin:auto;
+	text-align:center;
+
+}
+
+.title p {
+	margin:10px;
+}
