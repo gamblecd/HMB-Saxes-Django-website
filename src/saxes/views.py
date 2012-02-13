@@ -78,7 +78,7 @@ def login(request):
         if form.is_valid(): # All validation rules pass
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            if username == 'huskysax' and password == 'valhalla':
+            if username == '' and password == '':
                 request.session['logged_in'] = True
                 return music(request)
             else:
