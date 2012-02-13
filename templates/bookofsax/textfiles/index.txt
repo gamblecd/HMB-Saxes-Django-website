@@ -1,0 +1,18 @@
+.. Book Of Sax documentation master file, created by
+   sphinx-quickstart on Mon Sep 12 18:28:04 2011.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Book Of Sax
+======================
+
+.. toctree::
+   :maxdepth: 2
+   
+   tencommandments
+   traditions
+   sectionleaders
+   triplists
+   lists
+   saxbitch
+   howreedsarelikewomen

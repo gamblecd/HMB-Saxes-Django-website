@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+	{% block announcements %} 
+	{% include 'snippets/under_construction.html' %}
+	{% endblock %}
+        
+	{% block left_column %}
+	{% for post in posts %}
+	 <a href="/posts/{{ post.pk }}">
+	    <div id="body" class="item">
+	    <h4 class="item_title">{{ post.title }}</h4>
+	    <hr />
+	    <p>{{ post.snippet }}</p>
+	    </div>
+	   </a>
+	{% endfor %}
+	{% endblock %}
+
+    {% block right_column %}
+    {% for post in posts %}
+    <div id="body" class="item">
+    <img class="icon" src="/static/img/{{ post.icon_url }}" alt="WARNING"/>
+    <h3 class="post_title">{{ post.title }}</h3>
+    <h5 class="post_date">{{ post.date_modified.date }}</h5>
+    <hr />
+    <p>{{ post.body }}</p>
+    
+    </div>
+    {% endfor %}
+    {% endblock %}

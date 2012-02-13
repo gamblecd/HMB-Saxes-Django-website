@@ -1,0 +1,19 @@
+==========
+Trip Lists
+==========
+
+Overview
+========
+
+After every away trip, it is customary for someone or a couple people to posts
+lists defining the Good, the Bad, and the Ugly of what happened on said trip. 
+These are a culmination of those lists.
+
+Lists
+=====
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+    
+   lists/*

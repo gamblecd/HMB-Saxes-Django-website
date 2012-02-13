@@ -1,0 +1,13 @@
+
+<!-- TODO: USE DATATABLES jQuery Plugin with http://code.google.com/p/django-photologue/ for uploader -->
+<img class='member_pic' src='{{ member.member_photo.get_member_thumbnail_url }}'></img>
+<div class="member_information">
+<p><span class="label_span">Name:</span> {{ member.first_name }} {{ member.last_name }}</p>
+<p><span class="label_span">Nickname:</span> {{ member.nickname }}</p>
+<p><span class="label_span">Year Started School:</span> {{ member.year_starting_school }}</p>
+<p><span class="label_span">Year Started Band:</span> {{ member.year_starting_band }}</p>
+<p><span class="label_span">Major:</span> {{ member.major }}</p>
+<p><span class="label_span">Type of Saxophone:</span> {{ member.instrument }}</p>
+<p><span class="label_span">Best Band Memory:</span> {{ member.best_band_memory }}</p>
+</div>
+<div class="decollapse"></div>

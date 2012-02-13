@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+    {% block left_column %}
+		 <div id="body" class="item">
+		     <h3 class="item_title">Categories</h3>
+		     <hr />
+		     <a href="/friends/uw"><p class="sidebar">UW</p></a>
+		     <a href="/friends/pac12"><p class="sidebar">Pac-12</p></a>
+		     <a href="/friends/big10"><p class="sidebar">Big-10</p></a>
+		     <a href="/friends/"><p class="sidebar">All</p></a>
+		</div>
+    {% endblock %}
+
+    {% block right_column %}
+	    {% for friend in friends %}
+	    {% include friend %}
+	    {% endfor %}
+    {% endblock %}

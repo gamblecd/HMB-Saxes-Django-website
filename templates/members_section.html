@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+    {% block announcements %} 
+    {% include 'snippets/under_construction.html' %}
+    {% endblock %}
+        
+    {% block left_column %}
+		<div id="body" class="item">
+			<h4 class="item_title">Members Only</h4>
+			<hr />
+			<a><p class="sidebar">Music</p></a>
+			<a href="/book"><p class="sidebar">Book of Sax</p></a>
+			<a><p class="sidebar">Add Quotes</p></a>
+		</div>
+    {% endblock %}
+
+    {% block right_column %}
+		 <div id="music" class="item">
+		     <div id="alto_songlist">
+		         <h1>Alto Songs</h1>
+		         <hr />
+		     {% for song in alto %}
+		        <h4><a href="/static/media/sheetmusic/alto_{{ song }}">{{ song }}</a></h4>
+		     {% endfor %}
+		        
+		     </div>
+		     <div id="tenor_songlist">
+		     <h1>Tenor Songs</h1>
+		     <hr />
+		     {% for song in tenor %}
+		        <h4><a href="/static/media/sheetmusic/tenor_{{ song }}">{{ song }}</a></h4>
+		     {% endfor %}
+		        
+		     </div>
+		     <div class="decollapse"></div>
+		</div>
+        {% include 'snippets/quote_form.html' %}
+    {% endblock %}
+
+

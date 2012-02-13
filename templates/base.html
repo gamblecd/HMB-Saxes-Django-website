@@ -1,0 +1,28 @@
+{% include 'snippets/page_framing/html5boilerplatetop.html' %}
+
+{% include 'snippets/page_framing/header.html' %}
+    
+<div class="content">
+    <div class="design">
+      {% block design %}
+        {% block announcements %} 
+        {% endblock %}
+        <div class="left_col">
+        {% block left_column %}
+        {% endblock %}
+        </div>
+        <div class="right_col">
+           {% block right_column %}
+           
+           {% endblock %}
+        </div>
+       {% endblock %}        
+        <div class="decollapse"></div>
+    </div>
+</div>
+    
+    {% include 'snippets/page_framing/footer.html' %}
+  </div> <!--! end of #container -->
+
+{% include 'snippets/page_framing/html5boilerplatebottom.html' %}
+

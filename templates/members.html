@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+    {% block announcements %} 
+    {% include 'snippets/under_construction.html' %}
+    {% endblock %}
+        
+    {% block left_column %}
+		<div id="body" class="item">
+			<h3 class="item_title">Rookie Class of...</h3>
+			<hr />
+			{% for year in years %}
+			<a href="/members/{{ year }}"><p class="sidebar">{{ year }}</p></a>
+			{% endfor %}
+			<a href="/members"><p class="sidebar">All</p></a>
+		</div>
+    {% endblock %}
+
+    {% block right_column %}
+		<div  id="member_gallery" class="item">
+			<table>
+				<tr>
+				{% for member in roster %}
+				   <td class="member_data">
+				   {% include 'snippets/member_info.html' %}
+				   </td>
+				{% if forloop.counter|divisibleby:2 %}
+				</tr>
+				<tr>
+				{% endif %}
+				{% endfor %}
+				</tr>
+		    </table>
+		</div>
+		<div class="decollapse"></div>
+    {% endblock %}

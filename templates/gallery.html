@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+    {% block announcements %} 
+    {% include 'snippets/under_construction.html' %}
+    {% endblock %}
+        
+    {% block left_column %}
+		<div id="body" class="item">
+		    <h3>Albums</h3>
+		    <hr />
+		    {% for album in albums %}
+		      <p> {{ album.title }}</p>
+		    {% endfor %}
+		</div>
+    {% endblock %}
+
+    {% block right_column %}
+		<table id="image_gallery" class="right_col">
+			<tr>
+			{% for image in album.object_list %}
+				<td>
+				{% include 'snippets/gallery/frame.html' %}
+				</td>
+			{% if forloop.counter|divisibleby:3 %}
+			</tr>
+			<tr>
+			{% endif %}
+			{% endfor %}
+			</tr>
+		</table>
+		
+	    <div class="pagination">
+	    <span class="step-links">
+	        <span class="current">
+                <p style='text-align:center;'>Page {{ album.number }} of {{ album.paginator.num_pages }}.</p>
+            </span>
+	        {% if album.has_previous %}
+	            <a style='float:left;' href="?page={{ album.previous_page_number }}"><p>Previous</p></a>
+	        {% endif %}
+            {% if album.has_next %}
+                <a style='float:right;' href="?page={{ album.next_page_number }}"><p>Next</p></a>
+            {% endif %}	
+	        
+	
+	        
+	    </span>
+	</div>
+    {% endblock %}
