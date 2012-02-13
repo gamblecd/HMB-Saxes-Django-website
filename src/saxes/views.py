@@ -11,6 +11,7 @@ from photologue.models import Gallery
 from models import Member, Quote, Post
 from forms import MusicForm
 import settings as settings, variables as variables
+import sax_settings
 
 def home(request, post_pk=None):
     quote = _get_quote()
@@ -78,7 +79,7 @@ def login(request):
         if form.is_valid(): # All validation rules pass
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            if username == 'huskysax' and password == 'valhalla':
+            if username == sax_settings.USERNAME and password == sax_settings.PASSWORD:
                 request.session['logged_in'] = True
                 return music(request)
             else:
