@@ -1,12 +1,17 @@
 import os
 import sys
- 
- 
-path = '/home/shadowstorm/husky_saxes/src'
-if path not in sys.path:
-    sys.path.insert(0, path)
- 
+
+paths = [
+      	 "/home/shadowstorm/husky_saxes",
+	 "/home/shadowstorm/husky_saxes/src",
+      	 "/home/shadowstorm/husky_saxes/src/saxes",
+
+]
+for path in paths:
+    if path not in sys.path:
+        sys.path.insert(0, path)
+print(sys.path)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
- 
+
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
