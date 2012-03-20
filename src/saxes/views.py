@@ -101,13 +101,19 @@ def error(request, error=None, form=None):
     return render_to_response('login.html', c,
                               context_instance=RequestContext(request))
    
-def book(request):
+def book(request, page = 'lists/2011.txt'):
     if request.session.get('logged_in'):
-            file = open(settings.TEMPLATE_DIRS[0] + '/bookofsax/textfiles/lists/2011.txt')
-            text = file.read()
-            quote = _get_quote()
-            return render_to_response('bookofsax/book_of_sax.html', {'page':text, 'quote':quote},
-                                      context_instance=RequestContext(request))
+        toc = open(sax_settings.BOOK_DIR + 'textfiles/tencommandments.txt')
+        file = open(sax_settings.BOOK_DIR + 'textfiles/%s' % page)
+        text = file.read()
+        toctext = toc.read() 
+        quote = _get_quote()
+        file.close()
+        toc.close()
+        return render_to_response('bookofsax/book_of_sax.html', {'toc': toctext,
+                                                                 'page':text, 
+                                                                 'quote':quote},
+                                  context_instance=RequestContext(request))
     else:
         return login(request)
 

@@ -6,13 +6,6 @@
 Welcome to Book Of Sax
 ======================
 
-.. toctree::
-   :maxdepth: 2
+.. contents:: Book of Sax
+   :depth: 2
    
-   tencommandments
-   traditions
-   sectionleaders
-   triplists
-   lists
-   saxbitch
-   howreedsarelikewomen

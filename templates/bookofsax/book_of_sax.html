@@ -11,12 +11,12 @@
         <h3>Table of Contents</h3>
         <br />
         <a href="/book/reeds">How reeds are like women</p></a>
+        {{ toc|restructuredtext }}
     {% endblock %}
     </div>
     <div id="right_page" class="page">
     {% block right_page %}
      {{ page|restructuredtext }}
-        <p>This is the right page of the book of sax.</p>
     {% endblock %}
     </div>
     </div>
