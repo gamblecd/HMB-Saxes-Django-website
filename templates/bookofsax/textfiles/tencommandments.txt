@@ -1,5 +1,9 @@
+
+:Description: tencommandments
+
 The Ten Commandments of a Husky Saxophone
-=========================================
+-----------------------------------------
+
 
 I. Thou shalt not date thy sax brother or sister.
 
@@ -7,7 +11,7 @@ II. Thou may "engage" with thy sax brother or sister, but thou shalt be friends 
 
 III. Thy "Chosen One" shall be determined by thy sax Babes.
 
-IV. Thy sacrificial wine is Schmidts, but only thy rookies shall drink this wine.
+IV. Thy sacrificial wine is Schmidts, but only thy rookies shalt drink this wine.
 
 V. Thou shalt look out for thy sax brothers and sisters.
 

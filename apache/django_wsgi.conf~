@@ -1,0 +1,29 @@
+<VirtualHost *:80>
+    ServerName saxes.washington
+    ServerAdmin gamblecd@cs.washington.edu
+
+    DocumentRoot /home/shadowstorm/husky_saxes/src
+ 
+    <Directory /home/shadowstorm/husky_saxes/src>
+        Order deny,allow
+        Allow from all
+    </Directory>
+    Alias /static/ /home/shadowstorm/husky_saxes/static
+    Alias /media/ /home/shadowstorm/husky_saxes/static/media
+    <Directory /home/shadowstorm/husky_saxes/static/media>
+        AllowOverride None 
+	Options None 
+	Order allow,deny 
+	Allow from all 
+    </Directory>
+    
+    <Directory /home/shadowstorm/husky_saxes/static>
+        Order deny,allow
+        Allow from all
+    </Directory>
+    WSGIScriptAlias / /home/shadowstorm/husky_saxes/apache/saxes.wsgi
+    <Directory /home/shadowstorm/husky_saxes/apache>
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>

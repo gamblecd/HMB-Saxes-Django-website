@@ -5,6 +5,9 @@ sudo apt-get install python-pip
 sudo pip install django
 sudo pip install jinja2
 sudo pip install django-photologue
+sudo pip install docutils
+sudo pip install sphinx	
+sudo apt-get install python-docutils
 sudo apt-get install apache2
 sudo apt-get install libapache2-mod-wsgi
 

@@ -9,10 +9,16 @@ urlpatterns = patterns('',
     url(r'^$', 'saxes.views.home', name='home'),
     url(r'^posts/(()|(?P<post_pk>\d+))$', 'saxes.views.home', name='home'),
     url(r'^book/$', 'saxes.views.book', name='book'),
+    url(r'^book/($|(?P<page>\w{0,50})$)', 'saxes.views.book', name='book'),
     url(r'^members/(()|(?P<year>\d+))$', 'saxes.views.members', name='members'),
     url(r'^login/$', 'saxes.views.login', name='login'),
     url(r'^gallery/$', 'saxes.views.gallery', name='gallery'),
     url(r'^friends/(()|(?P<friend>\w{0,50}))$', 'saxes.views.friends', name='friends'),
+    
+    
+    #Book URLS
+    
+    
     
     # url(r'^husky_saxes/', include('husky_saxes.foo.urls')),
 

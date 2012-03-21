@@ -15,6 +15,7 @@ import sax_settings
 
 def home(request, post_pk=None):
     quote = _get_quote()
+    print quote
     if not post_pk:
         posts = Post.objects.all().order_by('-date_created')[:10]
     else:
@@ -101,14 +102,14 @@ def error(request, error=None, form=None):
     return render_to_response('login.html', c,
                               context_instance=RequestContext(request))
    
-def book(request, page = 'lists/2011.txt'):
+def book(request, page='lists/2011'):
     if request.session.get('logged_in'):
-        toc = open(sax_settings.BOOK_DIR + 'textfiles/tencommandments.txt')
-        file = open(sax_settings.BOOK_DIR + 'textfiles/%s' % page)
-        text = file.read()
+        toc = open(sax_settings.BOOK_DIR + 'textfiles/toc.txt')
+        f = open(sax_settings.BOOK_DIR + 'textfiles/%s.txt' % page)
+        text = f.read()
         toctext = toc.read() 
         quote = _get_quote()
-        file.close()
+        f.close()
         toc.close()
         return render_to_response('bookofsax/book_of_sax.html', {'toc': toctext,
                                                                  'page':text, 

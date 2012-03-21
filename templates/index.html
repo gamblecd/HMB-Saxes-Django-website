@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load markup %}  
 	{% block announcements %} 
 	{% include 'snippets/under_construction.html' %}
 	{% endblock %}
@@ -23,7 +23,7 @@
     <h3 class="post_title">{{ post.title }}</h3>
     <h5 class="post_date">{{ post.date_modified.date }}</h5>
     <hr />
-    <p>{{ post.body }}</p>
+    <p>{{ post.body|restructuredtext }}</p>
     
     </div>
     {% endfor %}

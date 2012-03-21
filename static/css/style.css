@@ -318,6 +318,13 @@ div {padding:0px;}
     height: 650px;
 }
 
+#book a {
+	color:#000000;
+}
+#book a:hover {
+	color:#444444;
+}
+
 .page {
     height:550px;
     width:35%;
@@ -329,16 +336,21 @@ div {padding:0px;}
     color: #121212;	
 }
 
-#left_page{
-	margin: 60px 0px 80px 60px;
-	float:left;
+.page h2 {
+	font-size: 36px;
 }
 
 #right_page{
-	margin: 60px 80px 0px 60px;
+	margin: 80px 80px 0px 60px;
     float:right;
     overflow : auto;
 }
+
+#left_page{
+	margin: 80px 00px 80px 100px;
+	float:left;
+}
+
 
 
 /* MEMBERS DESIGN */

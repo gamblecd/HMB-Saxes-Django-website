@@ -1,0 +1,10 @@
+To Set up:
+
+sudo apt-get install python-setuptools
+sudo apt-get install python-pip
+sudo pip install django
+sudo pip install django-photologue
+sudo apt-get install apache2
+sudo apt-get install libapache2-mod-wsgi
+
+TODO: what files to copy / where
