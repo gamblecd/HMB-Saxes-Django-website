@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load markup %}  
-	{% block announcements %} 
+{% block announcements %} 
 	{% include 'snippets/under_construction.html' %}
-	{% endblock %}
+{% endblock %}
         
-	{% block left_column %}
+{% block left_column %}
 	{% for post in posts %}
 	 <a href="/posts/{{ post.pk }}">
 	    <div id="body" class="item">
@@ -14,9 +14,9 @@
 	    </div>
 	   </a>
 	{% endfor %}
-	{% endblock %}
+{% endblock %}
 
-    {% block right_column %}
+{% block right_column %}
     {% for post in posts %}
     <div id="body" class="item">
     <img class="icon" src="/static/img/{{ post.icon_url }}" alt="WARNING"/>
@@ -27,4 +27,4 @@
     
     </div>
     {% endfor %}
-    {% endblock %}
+{% endblock %}

@@ -1,3 +1,20 @@
+TODO:
+Post Formatting
+     Allow HTML formatted text in posts.
+     Adjust DB to reflected strings that are formatted
+     Validate text, escape stuff if needed
+
+Book Formatting
+     Setup book layout to work properly
+     Adjust text files to allow for more formatting options.
+     Add Javascript to make book more interactive on single page
+
+DB entry from site
+     ALlow Admins to insert/edit/delete posts with user interface
+     Allow all users to enter/edit Good bad ugly stuff
+     	   File creation from form
+     Allow users to insert/edit pictures
+     
 To Set up:
 
 sudo apt-get install python-setuptools
