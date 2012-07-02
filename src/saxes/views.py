@@ -9,7 +9,7 @@ from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from photologue.models import Gallery
 from models import Member, Quote, Post
-from forms import MusicForm
+from forms import LoginForm, QuoteForm
 import settings as settings, variables as variables
 import sax_settings
 
@@ -60,6 +60,8 @@ def members(request, year=None):
                               context_instance=RequestContext(request))
 
 def music(request):
+    if not _is_logged_in(request):
+        return login(request, 'You must log in first to access that.')
     c = {}
     quote = _get_quote()
     c.update({'quote': quote})
@@ -74,50 +76,84 @@ def music(request):
             c.update({'alto':sorted(alto_songs), 'tenor': sorted(tenor_songs)})
     return render_to_response('members_section.html', c)
 
-def login(request):
+def login(request, message=''):
     if request.method == 'POST': # If the form has been submitted...
-        form = MusicForm(request.POST) # A form bound to the POST data
+        form = LoginForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             if username == sax_settings.USERNAME and password == sax_settings.PASSWORD:
                 request.session['logged_in'] = True
+                #TODO: return to url initially requested.
                 return music(request)
             else:
-                return error(request, error='Invalid Username or Password', form=form)
+                return form_error(request, error='Invalid Username or Password', form=form)
     else:
-        form = MusicForm() # An unbound form
+        form = LoginForm() # An unbound form
     c = {}
     quote = _get_quote()
     c.update({'quote': quote})
     c.update({'form': form})
-    return render_to_response('login.html', c,
+    c.update({'error': message})
+    c.update({'title': 'Login as a Sax'})
+    return render_to_response('form.html', c,
                               context_instance=RequestContext(request))
 
-def error(request, error=None, form=None):
+def add_object(request, objForm, callback, title='Add Object'):
+    if not _is_logged_in(request):
+        return login(request, 'You must log in first to access that.')
+    if request.method == 'POST': # If the form has been submitted...
+        form = objForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            try:
+                success_message = callback(form)
+                #TODO: return to previous page.
+                return success(request, success_message);
+            except Exception as e:
+                err = str(e)
+                return form_error(request, error=err, form=form)
+    else:
+        form = objForm() # An unbound form
+    c = {}
+    quote = _get_quote()
+    c.update({'quote': quote})
+    c.update({'form': form})
+    c.update({'title': title})
+    return render_to_response('form.html', c,
+                              context_instance=RequestContext(request))
+    
+def success(request, message='SUCCESS!',ob=None):
+    success = message
+    quote = _get_quote()
+    c = {}
+    c.update({'success': success})
+    c.update({'quote': quote})
+    return render_to_response('form.html', c,
+                              context_instance=RequestContext(request))
+    
+def form_error(request, error=None, form=None):
     c = {}
     c.update(csrf(request))
     quote = _get_quote()
     c.update({'quote':quote, 'error':error,'form':form})
-    return render_to_response('login.html', c,
+    return render_to_response('form.html', c,
                               context_instance=RequestContext(request))
    
 def book(request, page='lists/2011'):
-    if request.session.get('logged_in'):
-        toc = open(sax_settings.BOOK_DIR + 'textfiles/toc.txt')
-        f = open(sax_settings.BOOK_DIR + 'textfiles/%s.txt' % page)
-        text = f.read()
-        toctext = toc.read() 
-        quote = _get_quote()
-        f.close()
-        toc.close()
-        return render_to_response('bookofsax/book_of_sax.html', {'toc': toctext,
-                                                                 'page':text, 
-                                                                 'quote':quote},
+    if not _is_logged_in(request):
+        return login(request, 'You must log in first to access that.')
+    toc = open(sax_settings.BOOK_DIR + 'textfiles/toc.txt')
+    f = open(sax_settings.BOOK_DIR + 'textfiles/%s.txt' % page)
+    text = f.read()
+    toctext = toc.read() 
+    quote = _get_quote()
+    f.close()
+    toc.close()
+    return render_to_response('bookofsax/book_of_sax.html', {'toc': toctext,
+                                                             'page':text, 
+                                                             'quote':quote},
                                   context_instance=RequestContext(request))
-    else:
-        return login(request)
-
+    
 def friends(request, friend=None):
     c = {}
     c.update(csrf(request))
@@ -131,6 +167,34 @@ def friends(request, friend=None):
         
     return render_to_response('friends.html', c, 
                               context_instance=RequestContext(request))
+
+def _is_logged_in(request):
+    return 'logged_in' in request.session and request.session.get('logged_in', False)
+           
+
+def _insert_quote(form):
+    quote = form.cleaned_data['quote']
+    author = form.cleaned_data['author']
+    q = Quote(quote=quote, author=author)
+    q.validate_unique()
+    for quote in Quote.objects.all():
+        if quote.quote == q.quote:
+            return 'Quote was already in the database, using known author instead.'
+    success = 'Added the quote "%s" to the system.' % str(q)
+    q.save()
+    return success
+
+def _insert_post(form):
+    icon = form.cleaned_data['icon']
+    title = form.cleaned_data['title']
+    body = form.cleaned_data['body']
+#    date_created = form.cleaned_data['date_created']
+#    date_modified = form.cleaned_data['date_modified']
+    p = Post(icon_url=icon, title=title, body=body)
+    p.validate_unique()
+    success = 'Added the post "%s" to the system.' % str(p)
+    p.save()
+    return success
 
 def _get_quote():
     quotes = Quote.objects.all()

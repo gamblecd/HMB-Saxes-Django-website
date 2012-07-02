@@ -1,23 +1,29 @@
-Section Leaders
----------------
 
-Overview
---------
+:Description: sectionleaders
+
+===============
+Section Leaders
+===============
+
+>>>>>>
 
 This is a list of the current and past section leaders for the Husky Saxes.
-
 
 Current Section Leaders
 -----------------------
 
-Romulos Ragudos and Kate Gayle
+2011 - Tamlyn Sapp and Allan Broslawsky
+
+>>>>>>
 
 Past Section Leaders
 --------------------
 
+2011 - Romulos Ragudos Jr. and Kate Gayle
+
 2010 - Brad Carl and Geoff Veld
 
-2009 - Derek Anderson and Wayne 
+2009 - Derek Anderson and Wayne McNeal Jr.
 
 2008 - Derek Anderson and Nels Mattson
 

@@ -1,0 +1,21 @@
+{% extends 'members_section.html' %}
+
+{% block right_column %}
+	
+	<div id="form" class="item">
+		<h2>{{ title }}</h2>
+		<br />
+   		{% if success %}
+   			<p id="message">{{ success }}</p>
+	   	{% else %}
+	   		<p id="error">{{ error }}</p>
+	   
+			<form action="{{ form.action }}" method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value="Submit" />
+			</form>
+	   {% endif %}
+   </div>
+{% endblock %}
+   

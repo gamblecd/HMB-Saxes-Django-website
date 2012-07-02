@@ -115,7 +115,7 @@ TEMPLATE_DIRS = (
 
 
 # Uses files to store sessions
-SESSION_ENGINE = "django.contrib.sessions.backends.file"
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 INSTALLED_APPS = (
     'django.contrib.auth',

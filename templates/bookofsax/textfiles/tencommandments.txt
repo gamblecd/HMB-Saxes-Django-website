@@ -1,9 +1,8 @@
 
 :Description: tencommandments
 
-The Ten Commandments of a Husky Saxophone
+The Ten Commandments 
 -----------------------------------------
-
 
 I. Thou shalt not date thy sax brother or sister.
 

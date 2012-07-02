@@ -19,7 +19,7 @@
 {% block right_column %}
     {% for post in posts %}
     <div id="body" class="item">
-    <img class="icon" src="/static/img/{{ post.icon_url }}" alt="WARNING"/>
+    <img class="icon" src="/static/img/{{ post.icon_url }}" alt="{{ post.icon_url }}"/>
     <h3 class="post_title">{{ post.title }}</h3>
     <h5 class="post_date">{{ post.date_modified.date }}</h5>
     <hr />
