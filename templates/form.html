@@ -1,5 +1,9 @@
 {% extends 'members_section.html' %}
 
+{% block head %}
+	{{ form.media }}
+{% endblock %}
+
 {% block right_column %}
 	
 	<div id="form" class="item">
@@ -8,14 +12,16 @@
    		{% if success %}
    			<p id="message">{{ success }}</p>
 	   	{% else %}
-	   		<p id="error">{{ error }}</p>
+	   		<p id="error">{{ form.media }}</p>
 	   
 			<form action="{{ form.action }}" method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
+				
 				<input type="submit" value="Submit" />
 			</form>
 	   {% endif %}
+	   
    </div>
 {% endblock %}
    

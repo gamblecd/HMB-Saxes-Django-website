@@ -1,4 +1,5 @@
 <header>
+{% block header %}
 	<div id="header_bar" class="bar">
 	    <div id="header" class="content">
 	        <div id="title"><img src="/static/img/title.png" height="120px" alt="University of Washington:HMB|Saxophones"/></div>
@@ -10,4 +11,5 @@
 	    </div>
 	</div>
 	{% include 'snippets/page_framing/navigation.html' %}
+{% endblock %}
 </header>

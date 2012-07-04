@@ -1,0 +1,13 @@
+/* POST DESIGN */
+
+.icon {float:left;height:70px;margin-right:5px;}
+.post_title {
+	display:inline;
+}
+.post_date {
+    float:right;
+}
+
+#body hr {
+	clear:right;
+}

@@ -1,0 +1,12 @@
+/* MUSIC DESIGN */
+#alto_songlist {
+	float:left;
+}
+
+#tenor_songlist {
+	float:right;
+}
+#alto_songlist, #tenor_songlist {
+    width:45%;
+    text-align:center;	
+}

@@ -1,0 +1,26 @@
+/* MEMBERS DESIGN */
+.sidebar {
+	display:block;
+	font-size:26px;
+	font-weight:bold;
+	margin:auto;
+	width:100%;
+	text-align:center;
+}
+
+.member_pic {
+	float: right;
+	height:150px;
+	padding:0px;
+}
+
+#member_gallery table {
+	width:100%;
+	cell-padding-top:5px;
+	cell-padding-bottom:5px;
+}
+.member_data {
+    width:50%;
+    padding-right:10px;
+    padding-bottom:20px;      
+}

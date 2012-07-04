@@ -5,6 +5,7 @@ from random import Random
 
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
+from jinja2_for_django import jrender_to_response
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from photologue.models import Gallery
@@ -74,7 +75,7 @@ def music(request):
             elif song_name.startswith('tenor'):
                 tenor_songs.append(song_name[6:])
             c.update({'alto':sorted(alto_songs), 'tenor': sorted(tenor_songs)})
-    return render_to_response('members_section.html', c)
+    return render_to_response('members_section.html', c, context_instance=RequestContext(request))
 
 def login(request, message=''):
     if request.method == 'POST': # If the form has been submitted...
@@ -87,7 +88,7 @@ def login(request, message=''):
                 #TODO: return to url initially requested.
                 return music(request)
             else:
-                return form_error(request, error='Invalid Username or Password', form=form)
+                return form_page(request, error='Invalid Username or Password', form=form)
     else:
         form = LoginForm() # An unbound form
     c = {}
@@ -111,7 +112,7 @@ def add_object(request, objForm, callback, title='Add Object'):
                 return success(request, success_message);
             except Exception as e:
                 err = str(e)
-                return form_error(request, error=err, form=form)
+                return form_page(request, error=err, form=form)
     else:
         form = objForm() # An unbound form
     c = {}
@@ -131,7 +132,7 @@ def success(request, message='SUCCESS!',ob=None):
     return render_to_response('form.html', c,
                               context_instance=RequestContext(request))
     
-def form_error(request, error=None, form=None):
+def form_page(request, error=None, form=None):
     c = {}
     c.update(csrf(request))
     quote = _get_quote()
@@ -165,7 +166,7 @@ def friends(request, friend=None):
     
     c.update({'friends': friends, 'quote':quote})
         
-    return render_to_response('friends.html', c, 
+    return render_to_response('friends.html', c,
                               context_instance=RequestContext(request))
 
 def _is_logged_in(request):

@@ -1,0 +1,48 @@
+/* BOOK OF SAX DESIGN */
+
+#book {
+	padding:0;
+	background-image:url('/static/img/book/book.png');
+	background-size:103%;
+    background-position:center;
+    background-repeat:no-repeat; 
+    height: 650px;
+}
+
+#book a {
+	color:#000000;
+}
+#book a:hover {
+	color:#444444;
+}
+
+.page {
+    height:525px;
+    width:35%;
+	color:#333;
+}
+
+.page h1, .page h2, .page h3 {
+	text-align:center;
+    color: #121212;	
+}
+
+.page h1 {
+	font-size: 32px;
+}
+
+.page h2 {
+	font-size: 26px;
+	font-style:italic;
+}
+
+#right_page{
+	margin: 70px 80px 80px 55px;
+    float:right;
+    overflow : auto;
+}
+
+#left_page{
+	margin: 70px 55px 80px 100px;
+	float:left;
+}

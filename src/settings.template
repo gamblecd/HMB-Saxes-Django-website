@@ -1,9 +1,12 @@
 # Django settings for husky_saxes project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
+	('Chris Gamble', 'gamblecd@cs.washington.edu'),
     ('Your Name', 'your_email@example.com'),
 )
 
@@ -77,6 +80,16 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/tiny_mce/tiny_mce.js")
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'theme_advanced_toolbar_location': "top",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+TINYMCE_SPELLCHECKER = True
+#TINYMCE_COMPRESSOR = True
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -86,14 +99,14 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+SECRET_KEY = '%3l28qlz^^-lgh%r_d8z^_ii*h@$y_1$n=@2_cwlb0gn_!-usp'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
+#    'jinja2_for_django.Loader', #Jinja Templates
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    'jinja2_for_django.Loader', #Jinja Templates
-#     'django.template.loaders.eggs.Loader',
+      #'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,6 +119,13 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
+
+JINJA2_TEMPLATE_DIRS = (
+    WORKING_DIR + '/templates',
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
 TEMPLATE_DIRS = (
     WORKING_DIR + '/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -127,11 +147,13 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'saxes',
     'photologue',
+    'tinymce',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

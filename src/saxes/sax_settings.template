@@ -9,24 +9,3 @@ USERNAME = '' #Username to check against
 PASSWORD = '' # Password to check against
 
 BOOK_DIR = settings.TEMPLATE_DIRS[0] + '/bookofsax/'
-
-#QUOTES SETTINGS
-QUOTE_QUOTE_LENGTH = 160
-QUOTE_AUTHOR_LENGTH = 30
-QUOTE_FORM_ACTION = '/add_quote/'
-
-#POST SETTINGS
-POST_TITLE_LENGTH = 30
-POST_BODY_LENGTH = 1000
-POST_ICON_OPTIONS =['news.png',
-                    'football.png',
-                    'warning.png',
-                    ]
-
-#FORM DEFAULTS
-#Forms should be imported after the respective settings have been set
-import views
-from forms import QuoteForm, PostForm
-
-ADD_QUOTE_KWARGS = {'objForm':QuoteForm, 'callback':views._insert_quote, 'title':'Add New Quote'}
-ADD_POST_KWARGS = {'objForm':PostForm, 'callback':views._insert_post, 'title':'Add New Post'}

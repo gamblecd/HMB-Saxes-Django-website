@@ -1,14 +1,29 @@
 from django import forms
-import sax_settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
-                
+from models import Quote
 
-POST_ICON_OPTIONS = [
-                     (x, mark_safe(_('<img src="%(static_url)simg/%(name)s" class="icon" alt="%(name)s" title="%(name)s" />' % 
-                  {'static_url': settings.STATIC_URL, 'name':x,},
-                  ))) for x in sax_settings.POST_ICON_OPTIONS]
+from tinymce.widgets import TinyMCE
+
+                
+#QUOTES SETTINGS
+QUOTE_QUOTE_LENGTH = 160
+QUOTE_AUTHOR_LENGTH = 30
+QUOTE_FORM_ACTION = '/add_quote/'
+
+#POST SETTINGS
+POST_TITLE_LENGTH = 30
+POST_BODY_LENGTH = 1000
+POST_ICONS =['news.png',
+             'football.png',
+             'warning.png',
+             ]
+
+
+POST_ICON_OPTIONS = [(x, mark_safe(_('<img src="%(static_url)simg/%(name)s" class="icon" alt="%(name)s" title="%(name)s" />' % 
+                                     {'static_url': settings.STATIC_URL, 'name':x,},))) 
+                     for x in POST_ICONS]
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
     """renders horizontal radio buttons.
@@ -31,13 +46,14 @@ class ContactForm(forms.Form):
     sender = forms.EmailField()
     cc_myself = forms.BooleanField(required=False)
     
-class QuoteForm(forms.Form):
-    quote = forms.CharField(min_length=2, max_length=sax_settings.QUOTE_QUOTE_LENGTH)
-    author = forms.CharField(max_length=sax_settings.QUOTE_AUTHOR_LENGTH)
-    action = sax_settings.QUOTE_FORM_ACTION
+class QuoteForm(forms.ModelForm):
+    class Meta:
+        model=Quote
+#    quote = forms.CharField(min_length=2, max_length=QUOTE_QUOTE_LENGTH)
+#    author = forms.CharField(max_length=QUOTE_AUTHOR_LENGTH)
+    action = QUOTE_FORM_ACTION
     
 class PostForm(forms.Form):
-    title = forms.CharField(max_length=sax_settings.POST_TITLE_LENGTH)
-    body = forms.CharField(max_length=sax_settings.POST_BODY_LENGTH, widget=forms.Textarea)
+    title = forms.CharField(max_length=POST_TITLE_LENGTH)
+    body = forms.CharField(max_length=POST_BODY_LENGTH, widget=TinyMCE(attrs={'cols': 63, 'rows': 25, 'id':'mce'}))
     icon = forms.ChoiceField(widget=forms.RadioSelect(renderer=HorizontalRadioRenderer), choices=POST_ICON_OPTIONS)
-    

@@ -25,6 +25,8 @@ urlpatterns = patterns('',
     url(r'^add_post/$', 'saxes.views.add_object', name='add_object', kwargs=sax_settings.ADD_POST_KWARGS),
     #Book URLS
     
+    #TinyMCE
+    (r'^tinymce/', include('tinymce.urls')),
     
     
     # url(r'^husky_saxes/', include('husky_saxes.foo.urls')),

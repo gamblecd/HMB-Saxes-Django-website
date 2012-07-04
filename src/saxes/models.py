@@ -22,7 +22,7 @@ class Member_Photo(p_models.ImageModel):
     
 
 class Quote(models.Model):
-    quote = models.TextField(max_length=160)
+    quote = models.CharField(max_length=160)
     author = models.CharField(max_length=30)
     
     def __unicode__(self):
