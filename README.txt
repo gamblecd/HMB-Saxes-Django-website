@@ -1,6 +1,5 @@
 TODO:
 Post Formatting
-     Allow HTML formatted text in posts.
      Adjust DB to reflected strings that are formatted
      Validate text, escape stuff if needed
 
@@ -10,10 +9,25 @@ Book Formatting
      Add Javascript to make book more interactive on single page
 
 DB entry from site
-     ALlow Admins to insert/edit/delete posts with user interface
+     Allow Admins to insert/edit/delete posts with user interface
+	 Allow Admins to insert/edit members
      Allow all users to enter/edit Good bad ugly stuff
      	   File creation from form
      Allow users to insert/edit pictures
+	 
+Admin Side
+	Change admin skin to http://sehmaschine.github.com/django-grappelli/
+	 
+DB schema
+	Members
+		Adjust field restrictions
+		remove memory, add rank, username/password?
+	Quotes
+		Adjust field restrictions
+			Longer Quote length
+	Post
+		Adjust field restrictions
+			Longer Posts, add TinyMCE to body entry.
      
 To Set up:
 
