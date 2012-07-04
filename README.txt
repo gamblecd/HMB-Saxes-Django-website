@@ -14,10 +14,7 @@ DB entry from site
      Allow all users to enter/edit Good bad ugly stuff
      	   File creation from form
      Allow users to insert/edit pictures
-	 
-Admin Side
-	Change admin skin to http://sehmaschine.github.com/django-grappelli/
-	 
+	 	 
 DB schema
 	Members
 		Adjust field restrictions
@@ -51,4 +48,4 @@ copy saxes.db to husky_saxes
 
 From husky_saxes/
 chmod a+r . -R
-chmod a+wx saxes.db
+chmod a+rw . saxes.db

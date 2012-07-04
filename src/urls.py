@@ -27,7 +27,8 @@ urlpatterns = patterns('',
     
     #TinyMCE
     (r'^tinymce/', include('tinymce.urls')),
-    
+    #grappeli
+    (r'^grappelli/', include('grappelli.urls')),
     
     # url(r'^husky_saxes/', include('husky_saxes.foo.urls')),
 
