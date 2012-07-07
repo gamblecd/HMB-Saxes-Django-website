@@ -2,10 +2,12 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
-from models import Quote
+from models import Quote, Member
 
 from tinymce.widgets import TinyMCE
 
+#MEMBER SETTINGS
+MEMBER_FORM_ACTION ='/add_member/'
                 
 #QUOTES SETTINGS
 QUOTE_QUOTE_LENGTH = 160
@@ -19,11 +21,12 @@ POST_ICONS =['news.png',
              'football.png',
              'warning.png',
              ]
-
-
 POST_ICON_OPTIONS = [(x, mark_safe(_('<img src="%(static_url)simg/%(name)s" class="icon" alt="%(name)s" title="%(name)s" />' % 
                                      {'static_url': settings.STATIC_URL, 'name':x,},))) 
                      for x in POST_ICONS]
+POST_FORM_ACTION= '/add_post/'
+
+
 
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
     """renders horizontal radio buttons.
@@ -45,7 +48,18 @@ class ContactForm(forms.Form):
     message = forms.CharField()
     sender = forms.EmailField()
     cc_myself = forms.BooleanField(required=False)
-    
+
+class MemberForm(forms.ModelForm):
+    class Meta:
+        model=Member;
+        exclude = ('active')
+        widgets = {
+            'year_starting_band': forms.TextInput(attrs={'size':'3', 'maxLength':'4'}),
+            'year_starting_school': forms.TextInput(attrs={'size':'3', 'maxLhars':'4'}),
+        }
+    photo=forms.ImageField();
+    action = MEMBER_FORM_ACTION
+        
 class QuoteForm(forms.ModelForm):
     class Meta:
         model=Quote
@@ -54,6 +68,8 @@ class QuoteForm(forms.ModelForm):
     action = QUOTE_FORM_ACTION
     
 class PostForm(forms.Form):
+    action = POST_FORM_ACTION
     title = forms.CharField(max_length=POST_TITLE_LENGTH)
     body = forms.CharField(max_length=POST_BODY_LENGTH, widget=TinyMCE(attrs={'cols': 63, 'rows': 25, 'id':'mce'}))
-    icon = forms.ChoiceField(widget=forms.RadioSelect(renderer=HorizontalRadioRenderer), choices=POST_ICON_OPTIONS)
+    icon = forms.ChoiceField(widget=forms.RadioSelect(renderer=HorizontalRadioRenderer), choices=POST_ICON_OPTIONS, 
+                             initial=POST_ICONS[0])

@@ -9,8 +9,8 @@ from jinja2_for_django import jrender_to_response
 from django.core.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from photologue.models import Gallery
-from models import Member, Quote, Post
-from forms import LoginForm, QuoteForm
+from models import Member, Quote, Post, Member_Photo
+from forms import LoginForm
 import settings as settings, variables as variables
 import sax_settings
 
@@ -104,7 +104,11 @@ def add_object(request, objForm, callback, title='Add Object'):
     if not _is_logged_in(request):
         return login(request, 'You must log in first to access that.')
     if request.method == 'POST': # If the form has been submitted...
-        form = objForm(request.POST) # A form bound to the POST data
+        
+        if objForm().is_multipart():
+            form = objForm(request.POST, request.FILES)
+        else:
+            form = objForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             try:
                 success_message = callback(form)
@@ -140,11 +144,12 @@ def form_page(request, error=None, form=None):
     return render_to_response('form.html', c,
                               context_instance=RequestContext(request))
    
-def book(request, page='lists/2011'):
+def book(request, page='lists/2011', folder=''):
     if not _is_logged_in(request):
         return login(request, 'You must log in first to access that.')
     toc = open(sax_settings.BOOK_DIR + 'textfiles/toc.txt')
-    f = open(sax_settings.BOOK_DIR + 'textfiles/%s.txt' % page)
+    fpath = '%s.txt' % os.path.join(sax_settings.BOOK_DIR, 'textfiles', folder, page)
+    f = open(fpath)
     text = f.read()
     toctext = toc.read() 
     quote = _get_quote()
@@ -183,6 +188,31 @@ def _insert_quote(form):
             return 'Quote was already in the database, using known author instead.'
     success = 'Added the quote "%s" to the system.' % str(q)
     q.save()
+    return success
+
+def _insert_member(form):
+    first_name = form.cleaned_data['first_name']
+    last_name = form.cleaned_data['last_name']
+    nickname = form.cleaned_data['nickname']
+    instrument = form.cleaned_data['instrument']
+    major = form.cleaned_data['instrument']
+    year_starting_band = form.cleaned_data['year_starting_band']
+    year_starting_school = form.cleaned_data['year_starting_school']
+    best_band_memory = form.cleaned_data['best_band_memory']
+    photo = form.cleaned_data['photo']
+    
+    m = Member(first_name=first_name, last_name=last_name, nickname=nickname,
+               instrument=instrument, major=major, year_starting_band=year_starting_band,
+               year_starting_school=year_starting_school, best_band_memory=best_band_memory)
+    mPhoto = Member_Photo(photo)
+    
+    mPhoto.member = m
+    m.image = mPhoto;
+    m.validate_unique()
+    mPhoto.validate_unique()
+    mPhoto.save()
+    m.save()
+    success = 'Added the member "%s" to the system.' % str(m)
     return success
 
 def _insert_post(form):

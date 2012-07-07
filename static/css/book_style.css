@@ -17,9 +17,13 @@
 }
 
 .page {
-    height:525px;
-    width:35%;
+    height:560px;
+    width:40%;
 	color:#333;
+	margin-top:45px;
+    margin-left: 80px;
+    margin-right:60px;
+    
 }
 
 .page h1, .page h2, .page h3 {
@@ -35,15 +39,35 @@
 .page h2 {
 	font-size: 26px;
 	font-style:italic;
+	padding-bottom: 10px;
 }
 
 #right_page{
-	margin: 70px 80px 80px 55px;
+	margin-left: 0px;
     float:right;
     overflow : auto;
 }
 
 #left_page{
-	margin: 70px 55px 80px 100px;
+	margin-right: 0px;
 	float:left;
 }
+
+
+.section ul, .section ol {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size:15px;
+}
+
+.section li {
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.section {margin: 20px 0px 20px 0px;}
+.section h1 {margin-bottom: 10px;}
+dl {margin-top: 0px;-webkit-margin-before: 0em;-webkit-margin-after: 0em;}
+dt {font-weight:bold;}
+dd {margin-top: 5px;margin-bottom: 20px;}
+dd p {margin-top: 5px;margin-bottom: 5px;}

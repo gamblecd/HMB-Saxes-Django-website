@@ -1,5 +1,4 @@
 from django.db import models
-from django import forms
 from photologue import models as p_models
 
 # Create your models here.
@@ -9,9 +8,10 @@ class Member(models.Model):
     nickname = models.CharField(max_length=40)
     instrument = models.CharField(max_length=20)
     major = models.CharField(max_length=30)
-    year_starting_band = models.IntegerField()
-    year_starting_school = models.IntegerField()
+    year_starting_band = models.PositiveSmallIntegerField(max_length=4)
+    year_starting_school = models.PositiveSmallIntegerField()
     best_band_memory = models.TextField(max_length=640)
+    #active = models.BooleanField(default=True);
     image = p_models.ImageModel()
     
     def __unicode__(self):

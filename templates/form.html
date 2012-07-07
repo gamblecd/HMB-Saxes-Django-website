@@ -5,23 +5,21 @@
 {% endblock %}
 
 {% block right_column %}
-	
 	<div id="form" class="item">
 		<h2>{{ title }}</h2>
 		<br />
-   		{% if success %}
-   			<p id="message">{{ success }}</p>
-	   	{% else %}
-	   		<p id="error">{{ form.media }}</p>
-	   
-			<form action="{{ form.action }}" method="post">
-				{% csrf_token %}
-				{{ form.as_p }}
-				
-				<input type="submit" value="Submit" />
-			</form>
-	   {% endif %}
-	   
+   	    <p id="message">{{ success }}</p>
+   		<p id="error">{{ error }}</p>
+   	
+   		{% if form.is_multipart %}
+            <form enctype="multipart/form-data" method="post" action="{{ form.action }}">
+        {% else %}
+            <form method="post" action="{{ form.action }}">
+        {% endif %}
+        	{% csrf_token %}
+			{{ form.as_p }}
+	        <input type="submit" value="Submit" />
+		</form>
    </div>
 {% endblock %}
    

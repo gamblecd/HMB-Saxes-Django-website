@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^posts/(()|(?P<post_pk>\d+))$', 'saxes.views.home', name='home'),
     url(r'^book/$', 'saxes.views.book', name='book'),
     url(r'^book/($|(?P<page>\w{0,50})$)', 'saxes.views.book', name='book'),
+    url(r'^book/(?P<folder>\w{0,50})/(?P<page>\w{0,50})$', 'saxes.views.book', name='book'),
     url(r'^members/(()|(?P<year>\d+))$', 'saxes.views.members', name='members'),
     
     url(r'^gallery/$', 'saxes.views.gallery', name='gallery'),
@@ -23,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'saxes.views.login', name='login'),
     url(r'^add_quote/$', 'saxes.views.add_object', name='add_object', kwargs=sax_settings.ADD_QUOTE_KWARGS),
     url(r'^add_post/$', 'saxes.views.add_object', name='add_object', kwargs=sax_settings.ADD_POST_KWARGS),
+    url(r'^add_member/$', 'saxes.views.add_object', name='add_object', kwargs=sax_settings.ADD_MEMBER_KWARGS),
     #Book URLS
     
     #TinyMCE

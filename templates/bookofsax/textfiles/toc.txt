@@ -4,17 +4,20 @@
 Table of Contents
 =================
 
-`Ten Commandments </book/tencommandments>`_
--------------------------------------------
+`Section Leaders </book/sectionleaders>`_
+-----------------------------------------
 
 `Traditions </book/traditions>`_
 --------------------------------
 
+`The Good, The Bad, and The Ugly </book/lists/2011>`_
+------------------------------------------------------
+
+`Ten Commandments </book/tencommandments>`_
+-------------------------------------------
+
 `Kick Ass Lists </book/lists>`_
 -------------------------------
-
-`Section Leaders </book/sectionleaders>`_
------------------------------------------
 
 `Quotes </book/quotes>`_
 ------------------------

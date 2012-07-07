@@ -9,3 +9,8 @@ USERNAME = '' #Username to check against
 PASSWORD = '' # Password to check against
 
 BOOK_DIR = settings.TEMPLATE_DIRS[0] + '/bookofsax/'
+
+#FORM DEFAULTS
+#Forms should be imported after the respective settings have been set
+ADD_QUOTE_KWARGS = {'objForm':QuoteForm, 'callback':views._insert_quote, 'title':'Add New Quote'}
+ADD_POST_KWARGS = {'objForm':PostForm, 'callback':views._insert_post, 'title':'Add New Post'}
